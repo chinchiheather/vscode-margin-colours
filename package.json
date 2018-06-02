@@ -1,0 +1,48 @@
+{
+    "name": "margin-colours",
+    "displayName": "Margin Colours",
+    "description": "Display hex/rgb colours in the margin next to line numbers when written anywhere in a JS(ish) file: JavaScript, TypeScript, CoffeeScript, JSON",
+    "version": "1.0.0",
+    "publisher": "chinchiheather",
+    "engines": {
+        "vscode": "^1.23.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage:coffeescript",
+        "onLanguage:javascript",
+        "onLanguage:json",
+        "onLanguage:typescript"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.sayHello",
+                "title": "Hello World"
+            }
+        ]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "eslint": "^4.11.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {},
+    "keywords": [
+        "vscode",
+        "vscode-extenstion",
+        "colour",
+        "color",
+        "line-numbers",
+        "margin"
+    ]
+}
