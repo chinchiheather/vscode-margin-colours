@@ -5,17 +5,15 @@ const path = require('path');
 const colourRegex = /(^[a-zA-Z]+$)|(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\))/;
 
 function activate() {
-  const editor = vscode.window.activeTextEditor;
   
-  addMarginColours(editor.document);
-
+  addMarginColours();
   vscode.window.onDidChangeTextEditorSelection(addMarginColours);
-  vscode.workspace.onDidChangeTextDocument((event) => {
-    // addMarginColours(event.document);
-  });
+  // vscode.workspace.onDidChangeTextDocument(addMarginColours);
 }
 
-function addMarginColours(document) {
+function addMarginColours() {
+  const { document } = vscode.window.activeTextEditor;
+
   for (let i = 0, len = document.lineCount; i < len; i++) {
     const line = document.lineAt(i).text;
     const matches = line.match(colourRegex);
