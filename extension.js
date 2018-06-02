@@ -2,76 +2,30 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
 
-// var MAX_ICONS = 99;
-
-function activate(context) {
-  vscode.window.showInformationMessage('margin colours activated!');
-
-  vscode.window.onDidChangeTextEditorSelection(onTextChange);
-  addMarginColours();
-
-    // var decorations = createDecorations();
-
-    // function setRelativeLineDecorations() {
-    //     var editor = vscode.window.activeTextEditor;
-
-    //     if (!editor)
-    //         return;
-
-    //     var selection = editor.selection;
-    //     var text = editor.document.getText(selection);
-
-    //     var line = editor.selection.active.line;
-    //     var totalLines = editor.document.lineCount;
-
-    //     for (var delta = 1; delta < MAX_ICONS; delta++) {
-    //         var rangesForDecoration = [];
-
-    //         // Check upwards
-    //         if (line - delta >= 0) {
-    //             rangesForDecoration.push(new vscode.Range(line - delta, 0, line - delta, 0));
-    //         }
-
-    //         // Check downwards
-    //         if (line + delta < totalLines) {
-    //             rangesForDecoration.push(new vscode.Range(line + delta, 0, line + delta, 0));
-    //         }
-
-    //         editor.setDecorations(decorations[delta - 1], rangesForDecoration);
-    //     }
-    // }
-
-    // function clearRelativeLineDecorations() {
-    //     var editor = vscode.window.activeTextEditor;
-
-    //     if (!editor)
-    //         return;
-
-    //     decorations.forEach((d) => {
-    //         editor.setDecorations(d, []);
-    //     });
-    // }
-}
-
-function onTextChange(event) {
-
-}
 const colourRegex = /(^[a-zA-Z]+$)|(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\))/;
 
-function addMarginColours() {
+function activate() {
   const editor = vscode.window.activeTextEditor;
-  const { document } = editor;
+  
+  addMarginColours(editor.document);
 
+  vscode.window.onDidChangeTextEditorSelection(addMarginColours);
+  vscode.workspace.onDidChangeTextDocument((event) => {
+    // addMarginColours(event.document);
+  });
+}
+
+function addMarginColours(document) {
   for (let i = 0, len = document.lineCount; i < len; i++) {
     const line = document.lineAt(i).text;
     const matches = line.match(colourRegex);
     if (matches) {
-      addColour(matches[0], i);
+      addColourToLine(matches[0], i);
     }
   }
 }
 
-function addColour(colour, line) {
+function addColourToLine(colour, line) {
   const editor = vscode.window.activeTextEditor;
   const maxSize = 18;
   const size = 12;
@@ -97,7 +51,6 @@ function addColour(colour, line) {
 
 // this method is called when your extension is deactivated
 function deactivate() {
-
 }
 
 module.exports = {
