@@ -1,8 +1,8 @@
-const vscode = require('vscode');
+const vscode = require('vscode'); // eslint-disable-line import/no-unresolved
 const fs = require('fs');
 const path = require('path');
 
-const colourRegex = /(^[a-zA-Z]+$)|(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\))\b/;
+const colourRegex = /(^[a-zA-Z]+$)|(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s/]*[\d.]+%?\))\b/;
 const decorations = [];
 
 function activate() {
@@ -73,10 +73,10 @@ function addColourToLine(filePath, line) {
 
   const decoration = createTextEditorDecorationType({
     gutterIconPath: filePath,
-    gutterIconSize: '100%'
+    gutterIconSize: '100%',
   });
   decorations.push(decoration);
-  
+
   const start = new vscode.Position(line, 0);
   const end = new vscode.Position(line, 1);
   activeTextEditor.setDecorations(decoration, [new vscode.Range(start, end)]);
@@ -88,5 +88,5 @@ function deactivate() {
 
 module.exports = {
   activate,
-  deactivate
+  deactivate,
 };
