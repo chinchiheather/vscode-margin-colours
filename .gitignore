@@ -3,5 +3,6 @@ node_modules
 *.vsix
 .vscode
 .vscodeignore
-images/
 yarn-error.log
+images/*
+!images/.gitignore

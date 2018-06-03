@@ -61,7 +61,7 @@ function generateColourSvg(colour) {
   <rect width="${size}" height="${size}" x="${offset}" y="${offset}" rx="2" ry="2" style="fill:${colour};" />
 </svg>`;
 
-  const filePath = path.resolve(__dirname, `./images/colour-${colour}.svg`);
+  const filePath = path.resolve(__dirname, `../images/colour-${colour}.svg`);
   fs.writeFileSync(filePath, svgContent, 'utf8');
 
   return filePath;
