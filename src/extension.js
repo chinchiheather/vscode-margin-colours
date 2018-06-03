@@ -2,7 +2,7 @@ const vscode = require('vscode'); // eslint-disable-line import/no-unresolved
 const fs = require('fs');
 const path = require('path');
 
-const colourRegex = /(^[a-zA-Z]+$)|(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s/]*[\d.]+%?\))\b/;
+const colourRegex = /(^[a-zA-Z]+$)|(#(?:[0-9a-fA-F]{2}){2,4}\b|#[0-9a-fA-F]{3}\b|(?:rgba?|hsla?)\(\s*(?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s/]*[\d.]+%?\s*\))/;
 const decorations = [];
 
 function activate() {
