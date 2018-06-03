@@ -11,20 +11,40 @@ function activate() {
   // vscode.workspace.onDidChangeTextDocument(addMarginColours);
 }
 
+/**
+ * Checks each line of file, testing whether a colour value is present
+ * and adds colour into margin next to line number if found
+ */
 function addMarginColours() {
   const { document } = vscode.window.activeTextEditor;
 
+  const colours = {};
   for (let i = 0, len = document.lineCount; i < len; i++) {
     const line = document.lineAt(i).text;
     const matches = line.match(colourRegex);
     if (matches) {
-      addColourToLine(matches[0], i);
+      const colour = matches[0];
+      if (!colours[colour]) {
+        colours[colour] = [];
+      }
+      colours[colour].push(i);
+    }
+  }
+
+  for (const colour in colours) {
+    const svgFilePath = generateColourSvg(colour);
+    for (const line of colours[colour]) {
+      addColourToLine(svgFilePath, line);
     }
   }
 }
 
-function addColourToLine(colour, line) {
-  const editor = vscode.window.activeTextEditor;
+/**
+ * Generates an svg file for the specified colour
+ * SVG is a rounded rectangle of the passed in colour and is saved to <rootDir>/images directory
+ * @param {string} colour
+ */
+function generateColourSvg(colour) {
   const maxSize = 18;
   const size = 12;
   const offset = (maxSize - size) * 0.5;
@@ -37,14 +57,24 @@ function addColourToLine(colour, line) {
   const filePath = path.resolve(__dirname, `./images/colour-${colour}.svg`);
   fs.writeFileSync(filePath, svgContent, 'utf8');
 
-  const decoration = vscode.window.createTextEditorDecorationType({
+  return filePath;
+}
+
+/**
+ * Adds decorator to the margin of the specified line number, setting the background
+ * image url to the colour image file path passed in
+ */
+function addColourToLine(filePath, line) {
+  const { activeTextEditor, createTextEditorDecorationType } = vscode.window;
+
+  const decoration = createTextEditorDecorationType({
     gutterIconPath: filePath,
     gutterIconSize: '100%'
   });
   
   const start = new vscode.Position(line, 0);
   const end = new vscode.Position(line, 1);
-  editor.setDecorations(decoration, [new vscode.Range(start, end)]);
+  activeTextEditor.setDecorations(decoration, [new vscode.Range(start, end)]);
 }
 
 // this method is called when your extension is deactivated
