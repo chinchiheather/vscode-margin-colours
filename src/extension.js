@@ -2,13 +2,10 @@ const vscode = require('vscode'); // eslint-disable-line import/no-unresolved
 const fs = require('fs');
 const path = require('path');
 
-const colourRegex = /(^[a-zA-Z]+$)|(#(?:[0-9a-fA-F]{2}){2,4}\b|#[0-9a-fA-F]{3}\b|(?:rgba?|hsla?)\(\s*(?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s/]*[\d.]+%?\s*\))/;
+const colourRegex = /(#(?:[0-9a-fA-F]{2}){2,4}\b|#[0-9a-fA-F]{3}\b|(?:rgba?|hsla?)\(\s*(?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s/]*[\d.]+%?\s*\))/;
 const decorations = [];
 
 function activate() {
-  // create dir to store colour svg images
-  fs.mkdirSync(path.resolve(__dirname, './images'));
-
   addMarginColours();
   vscode.window.onDidChangeTextEditorSelection(addMarginColours);
 }
