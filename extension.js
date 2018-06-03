@@ -3,12 +3,11 @@ const fs = require('fs');
 const path = require('path');
 
 const colourRegex = /(^[a-zA-Z]+$)|(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|hsla?)\((?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s\/]*[\d\.]+%?\))/;
+const decorations = [];
 
 function activate() {
-  
   addMarginColours();
   vscode.window.onDidChangeTextEditorSelection(addMarginColours);
-  // vscode.workspace.onDidChangeTextDocument(addMarginColours);
 }
 
 /**
@@ -17,6 +16,11 @@ function activate() {
  */
 function addMarginColours() {
   const { document } = vscode.window.activeTextEditor;
+
+  // remove any current decorations
+  while (decorations.length > 0) {
+    decorations.pop().dispose();
+  }
 
   const colours = {};
   for (let i = 0, len = document.lineCount; i < len; i++) {
@@ -71,6 +75,7 @@ function addColourToLine(filePath, line) {
     gutterIconPath: filePath,
     gutterIconSize: '100%'
   });
+  decorations.push(decoration);
   
   const start = new vscode.Position(line, 0);
   const end = new vscode.Position(line, 1);
