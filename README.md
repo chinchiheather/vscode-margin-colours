@@ -3,7 +3,7 @@ Visual Studio Code extension to display hex/rgb/hsl colours in the margin next t
 
 This is useful when working with a CSS-in-JS library or with config files that use colour strings.
 
-![demo](https://chinchiheather.github.io/vscode-margin-colours/img/vscode-margin-colours-demo.gif)
+![demo](https://chinchiheather.github.io/vscode-margin-colours/img/demo-low-rate.gif)
 
 ## Install
 
