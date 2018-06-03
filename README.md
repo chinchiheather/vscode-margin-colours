@@ -9,7 +9,7 @@ This is useful when working with a CSS-in-JS library or with config files that u
 
 From within Visual Studio Code:
  * Open command palette with `Ctrl+Shift+P`/`Cmd+Shift+P`
- * Select 'Install Extensions'
+ * Select 'Extensions: Install Extensions'
  * Search for 'margin colours' and install
  
  ## Sourcecode
