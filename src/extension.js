@@ -6,6 +6,9 @@ const colourRegex = /(^[a-zA-Z]+$)|(#(?:[0-9a-f]{2}){2,4}|#[0-9a-f]{3}|(?:rgba?|
 const decorations = [];
 
 function activate() {
+  // create dir to store colour svg images
+  fs.mkdirSync(path.resolve(__dirname, './images'));
+
   addMarginColours();
   vscode.window.onDidChangeTextEditorSelection(addMarginColours);
 }
