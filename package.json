@@ -2,7 +2,7 @@
   "name": "vscode-margin-colours",
   "displayName": "Margin Colours",
   "description": "Visual Studio Code extension to display hex/rgb/hsl colours in the margin next to line numbers when written anywhere in a JS(ish) file: JavaScript, TypeScript, CoffeeScript, JSON",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "chinchiheather",
   "icon": "images/margin-colours-icon.png",
   "repository": {
