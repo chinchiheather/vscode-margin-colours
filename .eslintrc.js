@@ -2,6 +2,7 @@ module.exports = {
     "extends": "airbnb-base",
     
     "rules": {
+      "comma-dangle": ["error", "never"],
       "guard-for-in": 0,
       "indent": ["error", 2],
       "no-mixed-operators": 0,

@@ -73,7 +73,7 @@ function addColourToLine(filePath, line) {
 
   const decoration = createTextEditorDecorationType({
     gutterIconPath: filePath,
-    gutterIconSize: '100%',
+    gutterIconSize: '100%'
   });
   decorations.push(decoration);
 
@@ -84,6 +84,7 @@ function addColourToLine(filePath, line) {
 
 // this method is called when your extension is deactivated
 function deactivate() {
+  // todo: remove all saved images
 }
 
 module.exports = {
