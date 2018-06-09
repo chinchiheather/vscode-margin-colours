@@ -1,10 +1,11 @@
 {
   "name": "vscode-margin-colours",
   "displayName": "Margin Colours",
-  "description": "Display colour badge next to line numbers when any hex/rgb/hsl colours are written anywhere in a JS(ish) file",
-  "version": "1.0.2",
+  "description": "Display colour badge next to line numbers when any hex/rgb(a)/hsl(a) colours are written anywhere in a JS(ish) file",
+  "version": "1.1.0",
   "publisher": "chinchiheather",
   "icon": "images/margin-colours-icon.png",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chinchiheather/vscode-margin-colours.git"
@@ -26,14 +27,18 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
     "lint": "eslint ./src",
-    "vsce:publish": "npm run lint && vsce package && vsce publish"
+    "vsce:publish": "npm run lint && npm test && vsce package && vsce publish"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.42",
     "@types/node": "^7.0.43",
+    "chai": "^4.1.2",
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.12.0",
+    "mockery": "^2.1.0",
+    "sinon": "^5.1.0",
+    "sinon-chai": "^3.1.0",
     "typescript": "^2.6.1",
     "vscode": "^1.1.6"
   },
