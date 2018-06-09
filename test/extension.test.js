@@ -10,7 +10,6 @@ describe('margin-colours', () => {
   let marginColours;
 
   let vscodeMock;
-
   let changeTextEditorSpy;
   let createDecorationSpy;
   let setDecorationsSpy;
