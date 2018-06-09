@@ -27,7 +27,7 @@
     "postinstall": "node ./node_modules/vscode/bin/install",
     "test": "node ./node_modules/vscode/bin/test",
     "lint": "eslint ./src",
-    "vsce:publish": "npm run lint && vsce package && vsce publish"
+    "vsce:publish": "npm run lint && npm test && vsce package && vsce publish"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.42",
