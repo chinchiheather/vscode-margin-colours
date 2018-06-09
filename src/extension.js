@@ -2,12 +2,17 @@ const vscode = require('vscode'); // eslint-disable-line import/no-unresolved
 const fs = require('fs');
 const path = require('path');
 
-const colourRegex = /(#(?:[0-9a-fA-F]{2}){2,4}\b|#[0-9a-fA-F]{3}\b|(?:rgba?|hsla?)\(\s*(?:\d+%?(?:deg|rad|grad|turn)?(?:,|\s)+){2,3}[\s/]*[\d.]+%?\s*\))/;
+// eslint-disable-next-line max-len
+const colourRegex = /(#(?:[0-9a-fA-F]{2}){2,4}\b|#[0-9a-fA-F]{3}\b|(?:rgba?|hsla?)\(\s*(?:\d+%?(?:,|\s)+){2,3}[\s/]*[\d.]+%?\s*\))/;
 const decorations = [];
 
 function activate() {
   addMarginColours();
   vscode.window.onDidChangeTextEditorSelection(addMarginColours);
+}
+
+function deactivate() {
+  removeMarginColours();
 }
 
 /**
@@ -17,10 +22,7 @@ function activate() {
 function addMarginColours() {
   const { document } = vscode.window.activeTextEditor;
 
-  // remove any current decorations
-  while (decorations.length > 0) {
-    decorations.pop().dispose();
-  }
+  removeMarginColours();
 
   const colours = {};
   for (let i = 0, len = document.lineCount; i < len; i++) {
@@ -40,6 +42,12 @@ function addMarginColours() {
     for (const line of colours[colour]) {
       addColourToLine(svgFilePath, line);
     }
+  }
+}
+
+function removeMarginColours() {
+  while (decorations.length > 0) {
+    decorations.pop().dispose();
   }
 }
 
@@ -82,12 +90,7 @@ function addColourToLine(filePath, line) {
   activeTextEditor.setDecorations(decoration, [new vscode.Range(start, end)]);
 }
 
-// this method is called when your extension is deactivated
-function deactivate() {
-  // todo: remove all saved images
-}
-
 module.exports = {
   activate,
-  deactivate,
+  deactivate
 };
