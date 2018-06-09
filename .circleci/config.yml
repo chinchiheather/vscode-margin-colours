@@ -3,6 +3,9 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+dependencies:
+  pre:
+    - sudo apt-get update; sudo apt-get install libgtk2.0-0 libxtst6 libxss1 libgconf-2-4 libnss3 libasound2
 jobs:
   build:
     docker:
@@ -13,6 +16,7 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
+    
 
     working_directory: ~/repo
 
@@ -26,15 +30,13 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0; sh -e /etc/init.d/xvfb start; sleep 3;
-
       - run: yarn install
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
+      
       # lint
       - run: yarn lint
         
