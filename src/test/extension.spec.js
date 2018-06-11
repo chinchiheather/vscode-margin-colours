@@ -4,6 +4,7 @@
 const mockery = require('mockery');
 const sinon = require('sinon');
 const { expect } = require('chai');
+const { supportedFileTypes } = require('../constants');
 
 describe('margin-colours', () => {
   let marginColours;
@@ -35,6 +36,7 @@ describe('margin-colours', () => {
       window: {
         activeTextEditor: {
           document: {
+            fileName: 'my-file.js',
             lineCount: 1,
             lineAt: lineAtFake = sinon.fake(() => ({ text: 'myColour: #123456' }))
           },
@@ -222,7 +224,9 @@ describe('margin-colours', () => {
         'border: 1px solid #cfd234;'
       ]);
       activateExtension();
+    });
 
+    function changeSelection() {
       createDecorationSpy.resetHistory();
       setDecorationsSpy.resetHistory();
       setFileContent([
@@ -231,17 +235,45 @@ describe('margin-colours', () => {
         `background-color: ${newColours[1].colour};`
       ]);
       changeTextEditorSpy.getCall(0).args[0]();
-    });
+    }
 
-    it('removes old colour images', () => {
+    function checkImagesRemoved() {
+      changeSelection();
       expect(disposeSpy).to.have.callCount(3);
+    }
+
+    describe('and file extension is supported', () => {
+      supportedFileTypes.forEach(fileType => (
+        describe(`${fileType} file`, () => {
+          it('removes old colour images', () => {
+            checkImagesRemoved();
+          });
+
+          it('recalculates colour images', () => {
+            const { document } = vscodeMock.window.activeTextEditor;
+            document.fileName = `my-file.${fileType}`;
+            changeSelection();
+            expect(createDecorationSpy).to.have.callCount(2);
+            expect(setDecorationsSpy).to.have.callCount(2);
+            newColours.forEach((colour, idx) => {
+              checkColourImageOnLine(idx, colour.colour, colour.line);
+            });
+          });
+        })
+      ));
     });
 
-    it('recalculates colour images', () => {
-      expect(createDecorationSpy).to.have.callCount(2);
-      expect(setDecorationsSpy).to.have.callCount(2);
-      newColours.forEach((colour, idx) => {
-        checkColourImageOnLine(idx, colour.colour, colour.line);
+    describe('and file extension is not supported', () => {
+      it('removes old colour images', () => {
+        checkImagesRemoved();
+      });
+
+      it('does not recalculates colour images', () => {
+        const { document } = vscodeMock.window.activeTextEditor;
+        document.fileName = 'my-file.sql';
+        changeSelection();
+        expect(createDecorationSpy).not.to.have.been.called;
+        expect(setDecorationsSpy).not.to.have.been.called;
       });
     });
   });
