@@ -6,7 +6,6 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const { supportedFileTypes } = require('../constants');
 
-
 describe('margin-colours', () => {
   let marginColours;
 
