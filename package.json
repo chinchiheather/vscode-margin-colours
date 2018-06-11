@@ -18,8 +18,10 @@
   ],
   "activationEvents": [
     "onLanguage:coffeescript",
+    "onLanguage:html",
     "onLanguage:javascript",
     "onLanguage:json",
+    "onLanguage:php",
     "onLanguage:typescript"
   ],
   "main": "./src/extension",
