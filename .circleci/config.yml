@@ -3,9 +3,6 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-dependencies:
-  pre:
-    - sudo apt-get update; sudo apt-get install libgtk2.0-0 libxtst6 libxss1 libgconf-2-4 libnss3 libasound2
 jobs:
   build:
     docker:

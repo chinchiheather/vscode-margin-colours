@@ -25,7 +25,8 @@
   "main": "./src/extension",
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test",
+    "test": "mocha src/**/*.spec.js",
+    "test:watch": "npm test -- --watch",
     "lint": "eslint ./src",
     "vsce:publish": "npm run lint && npm test && vsce package && vsce publish"
   },
@@ -36,6 +37,7 @@
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.12.0",
+    "mocha": "^5.2.0",
     "mockery": "^2.1.0",
     "sinon": "^5.1.0",
     "sinon-chai": "^3.1.0",
