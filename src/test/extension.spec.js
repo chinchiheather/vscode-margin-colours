@@ -1,7 +1,6 @@
 /* eslint-env mocha */
 /* eslint-disable no-unused-expressions, global-require */
 
-const vscode = require('vscode');
 const mockery = require('mockery');
 const sinon = require('sinon');
 const { expect } = require('chai');
@@ -31,8 +30,8 @@ describe('margin-colours', () => {
   beforeEach(() => {
     disposeSpy = sinon.spy();
     vscodeMock = {
-      Range: vscode.Range,
-      Position: vscode.Position,
+      Range: sinon.fake((start, end) => ({ start, end })),
+      Position: sinon.fake((line, character) => ({ line, character })),
       window: {
         activeTextEditor: {
           document: {
@@ -55,10 +54,10 @@ describe('margin-colours', () => {
   function activateExtension() {
     // make sure extension is loaded with new mocks each time, bypassing
     // node's module caching
-    mockery.registerAllowable('../src/extension', true);
+    mockery.registerAllowable('../extension', true);
     mockery.registerMock('vscode', vscodeMock);
     mockery.registerMock('fs', { writeFileSync: writeFileSpy = sinon.spy() });
-    marginColours = require('../src/extension');
+    marginColours = require('../extension');
     marginColours.activate();
   }
 
