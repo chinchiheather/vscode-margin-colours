@@ -1,9 +1,8 @@
 const vscode = require('vscode'); // eslint-disable-line import/no-unresolved
 const fs = require('fs');
 const path = require('path');
+const { colourRegex, supportedFileTypes } = require('./constants');
 
-// eslint-disable-next-line max-len
-const colourRegex = /(#(?:[0-9a-fA-F]{2}){2,4}\b|#[0-9a-fA-F]{3}\b|(?:rgba?|hsla?)\(\s*(?:\d+%?(?:,|\s)+){2,3}[\s/]*[\d.]+%?\s*\))/;
 const decorations = [];
 
 function activate() {
@@ -21,12 +20,17 @@ function deactivate() {
  */
 function addMarginColours() {
   const { document } = vscode.window.activeTextEditor;
+  const { fileName, lineCount, lineAt } = document;
+  const fileExt = fileName.substring(fileName.lastIndexOf('.') + 1);
+  if (supportedFileTypes.indexOf(fileExt) === -1) {
+    return;
+  }
 
   removeMarginColours();
 
   const colours = {};
-  for (let i = 0, len = document.lineCount; i < len; i++) {
-    const line = document.lineAt(i).text;
+  for (let i = 0, len = lineCount; i < len; i++) {
+    const line = lineAt(i).text;
     const matches = line.match(colourRegex);
     if (matches) {
       const colour = matches[0];

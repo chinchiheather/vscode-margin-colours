@@ -19,6 +19,7 @@
   "activationEvents": [
     "onLanguage:coffeescript",
     "onLanguage:html",
+    "onLanguage:jade",
     "onLanguage:javascript",
     "onLanguage:json",
     "onLanguage:php",
