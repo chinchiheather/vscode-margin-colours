@@ -1,5 +1,5 @@
 # Margin Colours
-[![CircleCI](https://circleci.com/gh/chinchiheather/vscode-margin-colours/tree/master.png?style=shield)](https://circleci.com/gh/chinchiheather/vscode-margin-colours/tree/master)
+[![CircleCI](https://circleci.com/gh/chinchiheather/vscode-margin-colours/tree/master.png?style=shield&circle-token=9aa78872d3341f121db3b1bf571e15e94354f859)](https://circleci.com/gh/chinchiheather/vscode-margin-colours/tree/master)
 
 Display colour badge next to line numbers when any hex, rgb(a) or hsl(a) colours are written in a file.
 
