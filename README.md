@@ -15,6 +15,8 @@ Supported File Types:
  * HTML
  * Jade
  * PHP
+ * LESS
+ * Sass (SCSS)
 
 ## Install
 
