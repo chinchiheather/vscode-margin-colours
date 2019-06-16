@@ -34,7 +34,8 @@
     "test": "mocha src/**/*.spec.js",
     "test:watch": "npm test -- --watch",
     "lint": "eslint ./src",
-    "vsce:publish": "npm run lint && npm test && vsce package && vsce publish"
+    "vsce:package": "npm run lint && npm test && vsce package",
+    "vsce:publish": "npm run vsce:package && vsce publish"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -45,6 +46,7 @@
     "mockery": "^2.1.0",
     "sinon": "^5.1.0",
     "sinon-chai": "^3.1.0",
+    "vsce": "^1.63.0",
     "vscode": "^1.1.6"
   },
   "keywords": [
