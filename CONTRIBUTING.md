@@ -58,4 +58,12 @@ which will package the extension and generate a .vsix file
 
 You can inspect the packaged contents by changing the .vsix extension to .zip
 
+You can install the generated package by running
+
+```bash
+code --install-extension vscode-margin-colours-<version>.vsix
+```
+
+You will need to have [added code to your path](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) and you'll need to restart VSCode to see the new installation in action
+
 Publish won't work at all without the correct permissions
