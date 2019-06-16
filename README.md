@@ -1,11 +1,12 @@
 # Margin Colours
+
 [![CircleCI](https://img.shields.io/circleci/project/github/chinchiheather/vscode-margin-colours.svg)](https://circleci.com/gh/chinchiheather/vscode-margin-colours/tree/master)
 
 Display colour badge next to line numbers when any hex, rgb(a) or hsl(a) colours are written in a file.
 
 This is useful when working with a CSS-in-JS library or with config files that use colour strings.
 
-![demo](https://chinchiheather.github.io/images/vscode-margin-colours/img/demo-low-rate.gif)
+![demo](https://chinchiheather.github.io/images/vscode-margin-colours/img/demo.png)
 
 Supported File Types:
  * JavaScript
