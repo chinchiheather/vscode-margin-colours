@@ -1,8 +1,8 @@
 node_modules
 .vscode-test/
 *.vsix
-.vscode
-.vscodeignore
+.vscode/*
+!.vscode/launch.json
 yarn-error.log
 images/*
 !images/margin-colours-icon.png
