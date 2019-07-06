@@ -2,7 +2,7 @@
   "name": "vscode-margin-colours",
   "displayName": "Margin Colours",
   "description": "Display colour badge next to line numbers when any hex, rgb(a) or hsl(a) colours are written in a file",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "publisher": "chinchiheather",
   "icon": "images/margin-colours-icon.png",
   "license": "MIT",
