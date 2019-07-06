@@ -18,6 +18,7 @@ Supported File Types:
  * PHP
  * LESS
  * Sass (SCSS)
+ * CSS
 
 ## Install
 

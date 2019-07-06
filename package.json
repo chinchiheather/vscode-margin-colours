@@ -26,7 +26,8 @@
     "onLanguage:typescript",
     "onLanguage:less",
     "onLanguage:sass",
-    "onLanguage:scss"
+    "onLanguage:scss",
+    "onLanguage:css"
   ],
   "main": "./src/extension",
   "scripts": {
