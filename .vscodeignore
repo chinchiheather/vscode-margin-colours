@@ -1,0 +1,6 @@
+**/*
+
+!.vscodeignore
+!src/*
+src/test/*
+!images/margin-colours-icon.png

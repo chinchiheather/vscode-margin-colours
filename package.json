@@ -11,7 +11,7 @@
     "url": "git+https://github.com/chinchiheather/vscode-margin-colours.git"
   },
   "engines": {
-    "vscode": "^1.23.0"
+    "vscode": "^1.38.0"
   },
   "categories": [
     "Other"
@@ -48,7 +48,7 @@
     "sinon": "^5.1.0",
     "sinon-chai": "^3.1.0",
     "vsce": "^1.63.0",
-    "vscode": "^1.1.6"
+    "vscode": "^1.1.36"
   },
   "keywords": [
     "colour",
